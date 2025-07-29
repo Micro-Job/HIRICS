@@ -1,0 +1,15 @@
+{
+  "name": "HİRİ",
+  "short_name": "HİRİ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0378d8",
+  "icons": [
+    {
+      "src": "/icons/logo.png",
+      "sizes": "172x100",
+      "type": "image/png"
+    }
+  ]
+}
