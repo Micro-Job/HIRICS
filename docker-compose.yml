@@ -1,0 +1,13 @@
+services:
+  hirics_web:
+    build: .
+    container_name: hirics_web
+    ports:
+      - "3012:80" # host:container
+    restart: unless-stopped
+    networks:
+      - hirics_net
+
+  networks:
+  hirics_net:
+    driver: bridge
