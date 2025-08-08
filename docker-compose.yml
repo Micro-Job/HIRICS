@@ -8,6 +8,6 @@ services:
     networks:
       - hirics_net
 
-  networks:
+networks:
   hirics_net:
     driver: bridge
