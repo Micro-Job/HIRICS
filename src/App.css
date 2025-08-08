@@ -233,8 +233,6 @@
   .content-container {
     min-height: unset;
     height: fit-content;
-    margin-bottom: auto;
-    margin-top: 20%;
   }
 
   .logo {
