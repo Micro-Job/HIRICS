@@ -88,6 +88,11 @@ function App() {
               <span className="count">{timeLeft.minutes}</span>
               <span className="label">Dəqiqə</span>
             </div>
+            <div className="divider" />
+            <div className="countdown-item">
+              <span className="count">{timeLeft.seconds}</span>
+              <span className="label">Saniyə</span>
+            </div>
           </div>
 
           <button className="btn" onClick={() => setIsModalOpen(true)}>

@@ -70,7 +70,6 @@
 .countdown {
   display: flex;
   align-items: center;
-  gap: 23px;
   margin-top: 0px;
 }
 
@@ -79,16 +78,17 @@
   flex-direction: column;
   align-items: center;
   padding: 8px 12px;
+  width: 116px;
 }
 
 .count {
   color: #212121;
   text-align: center;
   font-family: Poppins;
-  font-size: 60px;
+  font-size: 48px;
   font-style: normal;
   font-weight: 500;
-  line-height: normal;
+  height: 66px;
 }
 
 .label {
@@ -246,55 +246,70 @@
   .logo {
     width: 93px;
     height: auto;
+    order: 1;
   }
   .title {
-    margin-bottom: 8px;
+    margin-bottom: 20px;
+    order: 2;
   }
 
   .description {
-    margin-bottom: 12px;
+    margin-bottom: 20px;
+    order: 3;
   }
 
   .mockup-mobile {
     width: 100%;
+    margin-bottom: 28px;
+    order: 4;
   }
 
   .btn {
     width: 100%;
     margin-top: 32px;
     max-width: unset;
+    order: 5;
   }
 
   .countdown-info {
     font-size: 18px;
-    text-align: left;
+    text-align: center;
     width: 100%;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+    order: 6;
+    margin-top: 28px;
   }
 
   .countdown {
-    gap: 12px;
+    display: flex;
+    width: fit-content;
     margin: 0 auto;
+    order: 7;
   }
 
   .countdown-item {
-    padding: 8px 4px;
-  }
-
-  .mockup-mobile {
-    margin-bottom: 20px;
+    width: 75px;
+    height: 82px;
+    /* padding: 8px 4px; */
   }
 
   .count {
     font-size: 36px;
-    padding: 0 14px;
+    line-height: 30px;
   }
 
   .label {
-    font-size: 20px;
+    font-size: 16px;
   }
+
+  .divider {
+    height: 60px;
+    width: 1px;
+    margin-top: 0;
+  }
+
   .btn {
-    margin-top: 24px;
+    margin-top: 0;
     height: 48px;
   }
   .btn-icon-wrapper {
