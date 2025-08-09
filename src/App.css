@@ -10,7 +10,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 60px 56px;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 /* giant watermark */
@@ -223,16 +224,23 @@
 
   .mockup-mobile {
     display: block;
-    width: 60%;
+    width: 50%;
     height: auto;
     margin-bottom: 28px;
   }
 }
 
 @media screen and (max-width: 540px) {
+  .background-text {
+    display: none;
+  }
+
   .content-container {
     min-height: unset;
+    max-height: unset;
     height: fit-content;
+    overflow-y: auto;
+    margin: 20px 0;
   }
 
   .logo {
