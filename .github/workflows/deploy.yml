@@ -1,23 +1,31 @@
 name: Deploy to Server
+
 on:
-push:
-    branches:
-     - main
+  push:
+    branches: [main]
+
 jobs:
-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-     uses: actions/checkout@v2
-    - name: Set up SSH
-     uses: webfactory/ssh-agent@v0.5.3
-     with:
-        ssh-private-key: ${{ secrets.SSH_KEY }}
-    - name: Deploy to Server
-     run: |
-        ssh -o StrictHostKeyChecking=no root@65.108.38.170 << 'EOF'
-         cd /root/HIRICS && \
-         git pull origin main && \
-         docker-compose down && \
-         docker-compose up --build -d
-        EOF
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - name: Add server to known_hosts
+        run: |
+          ssh-keyscan -H 65.108.38.170 >> ~/.ssh/known_hosts
+
+      - name: Deploy to Server
+        run: |
+          ssh root@65.108.38.170 << 'EOF'
+            cd /root/HIRICS
+            git pull origin main
+            docker-compose down
+            docker-compose up --build -d
+          EOF
+
