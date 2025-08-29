@@ -2,7 +2,7 @@ name: Deploy to Server
 on:
 push:
     branches:
-     - test
+     - main
 jobs:
 deploy:
     runs-on: ubuntu-latest
@@ -12,12 +12,12 @@ deploy:
     - name: Set up SSH
      uses: webfactory/ssh-agent@v0.5.3
      with:
-        ssh-private-key: ${{ secrets.SSH_TEST_PRIVATE_KEY }}
+        ssh-private-key: ${{ secrets.SSH_KEY }}
     - name: Deploy to Server
      run: |
         ssh -o StrictHostKeyChecking=no root@65.108.38.170 << 'EOF'
-         cd /home/projects/MayTruck/MayTruckFront && \
-         git pull origin test && \
+         cd /root/HIRICS && \
+         git pull origin main && \
          docker-compose down && \
          docker-compose up --build -d
         EOF
