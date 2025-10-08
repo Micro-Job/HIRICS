@@ -6,7 +6,7 @@ import CommentsModal from "@/component/modals/CommentsModal";
 import { useEffect, useState } from "react";
 import "./App.css";
 
-const LAUNCH_DATE = new Date("2025-10-08T00:00:00");
+const LAUNCH_DATE = new Date("2025-11-08T00:00:00");
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
