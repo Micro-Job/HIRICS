@@ -28,7 +28,7 @@ export default function CommentsModal({ open, onOpenChange }) {
     try {
       setIsLoading(true);
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/job/Feedback/CreateFeedback`,
+        `${import.meta.env.VITE_API_URL}/job/api/Feedback/CreateFeedback`,
         {
           method: "POST",
           body: JSON.stringify({
@@ -71,9 +71,7 @@ export default function CommentsModal({ open, onOpenChange }) {
           <DialogTitle>Təklif və iradlarınızı bildirin</DialogTitle>
         </DialogHeader>
 
-        {/*
-          STEP 1: choose anonymous vs public
-        */}
+        {/* STEP-1: choose anonymous vs public */}
         {step === 1 && (
           <>
             <div className="comments-modal__description">
@@ -138,9 +136,7 @@ export default function CommentsModal({ open, onOpenChange }) {
           </>
         )}
 
-        {/*
-          STEP 2: collect name (if public) and comment
-        */}
+        {/* STEP-2: collect name (if public) and comment */}
         {step === 2 && (
           <>
             <div className="comments-modal__actions">
