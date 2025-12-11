@@ -6,7 +6,7 @@ import CommentsModal from "@/component/modals/CommentsModal";
 import { useEffect, useState } from "react";
 import "./App.css";
 
-const LAUNCH_DATE = new Date("2025-12-08T00:00:00");
+const LAUNCH_DATE = new Date("2026-01-08T00:00:00");
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,12 +19,14 @@ function App() {
   });
 
   useEffect(() => {
+    let id;
+
     const tick = () => {
       const now = new Date();
       const diff = LAUNCH_DATE - now;
 
       if (diff <= 0) {
-        clearInterval(id);
+        if (id) clearInterval(id);
         return setTimeLeft({
           days: "00",
           hours: "00",
@@ -47,8 +49,10 @@ function App() {
     };
 
     tick(); // immediate first call
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
+    id = setInterval(tick, 1000);
+    return () => {
+      if (id) clearInterval(id);
+    };
   }, []); // ← now it only runs once
 
   return (
