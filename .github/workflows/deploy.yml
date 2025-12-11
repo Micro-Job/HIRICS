@@ -22,7 +22,7 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh root@65.108.38.170 << 'EOF'
+          ssh -p 2226 root@65.108.38.170 << 'EOF'
             cd /home/projects/HIRICS
             git pull origin main
             docker-compose down
