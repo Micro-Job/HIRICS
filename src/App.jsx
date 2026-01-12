@@ -6,7 +6,26 @@ import CommentsModal from "@/component/modals/CommentsModal";
 import { useEffect, useState } from "react";
 import "./App.css";
 
-const LAUNCH_DATE = new Date("2026-01-08T00:00:00");
+// const LAUNCH_DATE = new Date("2026-01-08T00:00:00");
+const BASE_DATE = new Date("2026-02-01T00:00:00");
+const CYCLE_DAYS = 15;
+
+const getCurrentTargetDate = () => {
+  const now = new Date();
+
+  if (now < BASE_DATE) {
+    return BASE_DATE;
+  }
+
+  const diffMs = now - BASE_DATE;
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const cyclesPassed = Math.floor(diffDays / CYCLE_DAYS);
+
+  const nextTarget = new Date(BASE_DATE);
+  nextTarget.setDate(nextTarget.getDate() + (cyclesPassed + 1) * CYCLE_DAYS);
+
+  return nextTarget;
+};
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,16 +42,12 @@ function App() {
 
     const tick = () => {
       const now = new Date();
-      const diff = LAUNCH_DATE - now;
+      const targetDate = getCurrentTargetDate();
+      const diff = targetDate - now;
 
       if (diff <= 0) {
-        if (id) clearInterval(id);
-        return setTimeLeft({
-          days: "00",
-          hours: "00",
-          minutes: "00",
-          seconds: "00",
-        });
+        // Əgər mənfi olarsa, növbəti tsiklə keç
+        return;
       }
 
       const days = Math.floor(diff / 86_400_000);
@@ -48,12 +63,12 @@ function App() {
       });
     };
 
-    tick(); // immediate first call
+    tick();
     id = setInterval(tick, 1000);
     return () => {
       if (id) clearInterval(id);
     };
-  }, []); // ← now it only runs once
+  }, []);
 
   return (
     <>
