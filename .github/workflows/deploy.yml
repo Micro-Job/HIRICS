@@ -18,11 +18,11 @@ jobs:
 
       - name: Add server to known_hosts
         run: |
-          ssh-keyscan -H 65.108.38.170 >> ~/.ssh/known_hosts
+          ssh-keyscan -H -p 2226 65.108.38.170 >> ~/.ssh/known_hosts
 
       - name: Deploy to Server
         run: |
-          ssh root@65.108.38.170 << 'EOF'
+          ssh -p 2226 root@65.108.38.170 << 'EOF'
             cd /home/projects/HIRICS
             git pull origin main
             docker-compose down
